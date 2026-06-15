@@ -311,8 +311,9 @@ body::before{
    ================================================================= */
 .hero{
   position:relative; min-height:100svh;
-  display:flex; align-items:center; justify-content:center;
+  display:flex;
   text-align:center; overflow:hidden;
+  padding:clamp(112px,16vh,180px) 0 clamp(56px,8vh,100px);
   background:
     radial-gradient(130% 100% at 50% 18%, rgba(195,165,114,.10), transparent 55%),
     linear-gradient(180deg, #0c1628 0%, var(--navy) 45%, var(--navy-deep) 100%);
@@ -323,7 +324,7 @@ body::before{
 .hero::after{ content:""; position:absolute; inset:0; z-index:1;
   background:linear-gradient(180deg, rgba(10,19,34,.45), rgba(10,19,34,.2) 40%, rgba(10,19,34,.85)); }
 
-.hero-inner{ position:relative; z-index:2; padding-inline:var(--gutter); max-width:1000px; }
+.hero-inner{ position:relative; z-index:2; padding-inline:var(--gutter); max-width:1000px; margin:auto; }
 .hero .eyebrow{ margin-bottom:2.2rem; }
 .hero-name{
   display:flex; flex-direction:column; align-items:center; gap:.75rem;
@@ -334,9 +335,9 @@ body::before{
   letter-spacing:.07em; white-space:nowrap;
 }
 .hero-name .loc{
-  font-family:var(--mincho); font-weight:500;
-  font-size:clamp(.9rem, 1.9vw, 1.2rem);
-  letter-spacing:.52em; text-indent:.52em; color:var(--gold);
+  font-family:var(--mincho); font-weight:600;
+  font-size:clamp(1.55rem, 7.2vw, 5rem);
+  letter-spacing:.07em; color:var(--white);
 }
 .hero .tagline{
   font-family:var(--mincho); font-weight:500;
@@ -350,6 +351,39 @@ body::before{
   margin-top:2.6rem;
 }
 .hero .sub .ja{ font-family:var(--mincho); letter-spacing:.2em; text-transform:none; color:rgba(255,255,255,.78); margin-left:.6em; }
+
+/* hero quick-access (SNS / 症例 / interview) — understated */
+.hero-actions{ display:flex; flex-direction:column; align-items:center; gap:1.3rem; margin-top:2.8rem; width:100%; }
+.hero-sns{ display:flex; justify-content:center; align-items:center; gap:1.2rem; }
+.hero-sns a{
+  display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px;
+  border:1px solid rgba(255,255,255,.26); border-radius:50%; color:rgba(255,255,255,.7);
+  transition:color .4s var(--ease), border-color .4s var(--ease), background .4s var(--ease);
+}
+.hero-sns a:hover{ color:#fff; border-color:var(--gold); background:rgba(195,165,114,.16); }
+.hero-sns svg{ width:18px; height:18px; }
+.hero-links{ display:flex; flex-wrap:wrap; justify-content:center; gap:1rem; width:100%; }
+.hero-link{
+  display:flex; flex-direction:column; flex:1 1 300px; max-width:380px; overflow:hidden;
+  border:1px solid var(--line-d); border-radius:3px; background:rgba(255,255,255,.04);
+  transition:transform .4s var(--ease), background .4s var(--ease), border-color .4s var(--ease);
+}
+.hero-link-media{ aspect-ratio:16/9; width:100%; border:0; border-radius:0; }
+.hero-link-text{
+  display:flex; flex-direction:column; gap:.4em; text-align:left; padding:.9em 1.15em 1.05em;
+  font-family:var(--mincho); font-weight:500; font-size:.96rem; letter-spacing:.03em;
+  color:rgba(255,255,255,.94); line-height:1.55; border-top:1px solid var(--line-d);
+}
+.hero-actions .lbl{ font-family:var(--util); letter-spacing:.18em; text-transform:uppercase; font-size:.58rem; color:var(--gold); }
+.hero-link:hover{ transform:translateY(-3px); background:rgba(195,165,114,.1); border-color:var(--gold); }
+.hero-btn{
+  display:inline-flex; flex-direction:column; align-items:center; gap:.3em;
+  border:1px solid var(--line-d); border-bottom:2px solid var(--gold);
+  background:rgba(255,255,255,.04); padding:.85em 2.2em; border-radius:2px;
+  font-family:var(--mincho); font-weight:500; font-size:.95rem; letter-spacing:.05em; color:rgba(255,255,255,.94);
+  transition:transform .4s var(--ease), background .4s var(--ease), border-color .4s var(--ease);
+}
+.hero-btn:hover{ transform:translateY(-2px); background:rgba(195,165,114,.12); border-color:var(--gold); }
 
 .scroll-ind{
   position:absolute; left:50%; bottom:34px; transform:translateX(-50%); z-index:3;
@@ -590,7 +624,7 @@ body::before{
   .hero .eyebrow{ font-size:.58rem; letter-spacing:.32em; margin-bottom:1.7rem; }
   .hero-name{ gap:.6rem; }
   .hero-name .nm{ letter-spacing:.04em; }
-  .hero-name .loc{ letter-spacing:.46em; text-indent:.46em; }
+  .hero-name .loc{ letter-spacing:.04em; }
   .hero .tagline{ font-size:1.12rem; letter-spacing:.15em; }
   .hero .sub{ margin-top:1.9rem; font-size:.66rem; letter-spacing:.24em; }
 
@@ -664,8 +698,40 @@ body::before{
     <h1 class="hero-name reveal d1"><span class="nm">五十嵐歯科クリニック</span><span class="loc">代官山</span></h1>
     <p class="tagline reveal d2">不可能を、可能にする。</p>
     <p class="sub reveal d3">Super Dentist <span class="ja">― Dr. 五十嵐 一誠</span></p>
+
+    <div class="hero-actions reveal d3">
+      <div class="hero-sns">
+        <a href="https://www.instagram.com/superdentist5/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@superdentist500?_r=1&amp;_t=ZS-97EPgnKUlH8" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.9 2h2.7c.2 1.4.9 2.7 2 3.5.7.5 1.6.9 2.5 1v2.7c-1.6 0-3.1-.5-4.4-1.4v6.1c0 3.1-2.5 5.6-5.6 5.6S4.5 17 4.5 13.9s2.5-5.6 5.6-5.6c.3 0 .6 0 .9.1v2.8c-.3-.1-.6-.2-.9-.2-1.6 0-2.8 1.3-2.8 2.9s1.3 2.9 2.8 2.9c1.6 0 2.9-1.2 2.9-2.8V2z"/></svg>
+        </a>
+      </div>
+      <div class="hero-links">
+        <!-- TODO: 実URLに差し替え（インプラント不使用 症例ページ） -->
+        <a class="hero-link" href="#">
+          <div class="hero-link-media media">
+            <span class="corner tl"></span><span class="corner br"></span>
+            <div class="ph-label">Before / After</div>
+            <!-- 画像差し替え（横長1枚・ビフォーアフター）: <img src="assets/img/case-implant.jpg" alt="インプラントを使わないで歯を作る症例 ビフォーアフター"> -->
+          </div>
+          <span class="hero-link-text"><span class="lbl">Before / After 症例</span>インプラントを使わないで歯を作る</span>
+        </a>
+        <!-- TODO: 実URLに差し替え（矯正では治らない歯 症例ページ） -->
+        <a class="hero-link" href="#">
+          <div class="hero-link-media media">
+            <span class="corner tl"></span><span class="corner br"></span>
+            <div class="ph-label">Before / After</div>
+            <!-- 画像差し替え（横長1枚・ビフォーアフター）: <img src="assets/img/case-ortho.jpg" alt="矯正では治らない歯をセラミックで作る症例 ビフォーアフター"> -->
+          </div>
+          <span class="hero-link-text"><span class="lbl">Before / After 症例</span>矯正では治らない歯をセラミックで作る</span>
+        </a>
+      </div>
+      <!-- TODO: 実URLに差し替え（インタビュー記事ページ） -->
+      <a class="hero-btn" href="#"><span class="lbl">Interview</span>インタビュー記事</a>
+    </div>
   </div>
-  <div class="scroll-ind"><span>Scroll</span><span class="bar"></span></div>
 </section>
 
 <!-- ============================ ABOUT ============================ -->
@@ -905,7 +971,7 @@ body::before{
     <div class="socials reveal d3">
       <a href="https://www.instagram.com/superdentist5/" target="_blank" rel="noopener">Instagram</a>
       <a href="https://www.youtube.com/@dental.igarashi" target="_blank" rel="noopener">YouTube</a>
-      <a href="https://line.me/ti/p/cYmVLvtfF6" target="_blank" rel="noopener">LINE</a>
+      <a href="https://line.me/ti/p/Mzu8xEQqSA" target="_blank" rel="noopener">LINE</a>
     </div>
   </div>
 </section>
@@ -922,7 +988,7 @@ body::before{
 
 <!-- ============ FLOATING SOCIAL（常に表示：LINE / Instagram）============ -->
 <div class="float-social" aria-label="SNSリンク">
-  <a class="fs-btn fs-line" href="https://line.me/ti/p/cYmVLvtfF6" target="_blank" rel="noopener" aria-label="LINEで相談する">
+  <a class="fs-btn fs-line" href="https://line.me/ti/p/Mzu8xEQqSA" target="_blank" rel="noopener" aria-label="LINEで相談する">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.49 3 2 6.62 2 11.07c0 3.98 3.55 7.31 8.35 7.94.33.07.77.22.88.49.1.25.06.64.03.89l-.14.83c-.04.25-.2.97.85.53 1.05-.44 5.68-3.34 7.75-5.72C20.94 14.61 22 12.93 22 11.07 22 6.62 17.51 3 12 3ZM8.2 12.9H6.66a.4.4 0 0 1-.4-.4V9.43a.4.4 0 0 1 .8 0v2.67h.74a.4.4 0 1 1 0 .8Zm1.57-.4a.4.4 0 0 1-.8 0V9.43a.4.4 0 0 1 .8 0v3.07Zm3.74 0a.4.4 0 0 1-.27.38.42.42 0 0 1-.13.02.4.4 0 0 1-.32-.16l-1.57-2.13v1.89a.4.4 0 0 1-.8 0V9.43a.4.4 0 0 1 .27-.38.4.4 0 0 1 .45.15l1.57 2.12V9.43a.4.4 0 0 1 .8 0v3.07Zm2.5-1.93a.4.4 0 1 1 0 .8h-.74v.73h.74a.4.4 0 1 1 0 .8H15.2a.4.4 0 0 1-.4-.4V9.43a.4.4 0 0 1 .4-.4h1.14a.4.4 0 1 1 0 .8h-.74v.74h.74Z"/></svg>
     <span class="fs-label">LINE</span>
   </a>
