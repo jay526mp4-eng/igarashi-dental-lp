@@ -327,17 +327,17 @@ body::before{
 .hero-inner{ position:relative; z-index:2; padding-inline:var(--gutter); max-width:1000px; margin:auto; }
 .hero .eyebrow{ margin-bottom:2.2rem; }
 .hero-name{
-  display:flex; flex-direction:column; align-items:center; gap:.75rem;
-  font-family:var(--mincho); font-weight:600; line-height:1.14;
+  display:flex; flex-direction:row; flex-wrap:wrap; align-items:baseline; justify-content:center; gap:.04em .16em;
+  font-family:var(--mincho); font-weight:600; line-height:1.3;
 }
 .hero-name .nm{
-  font-size:clamp(1.55rem, 7.2vw, 5rem);
-  letter-spacing:.07em; white-space:nowrap;
+  font-size:clamp(1.45rem, 4.4vw, 2.9rem);
+  letter-spacing:.06em; white-space:nowrap;
 }
 .hero-name .loc{
   font-family:var(--mincho); font-weight:600;
-  font-size:clamp(1.55rem, 7.2vw, 5rem);
-  letter-spacing:.07em; color:var(--white);
+  font-size:clamp(1.45rem, 4.4vw, 2.9rem);
+  letter-spacing:.06em; color:var(--white); white-space:nowrap;
 }
 .hero .tagline{
   font-family:var(--mincho); font-weight:500;
@@ -362,28 +362,23 @@ body::before{
 }
 .hero-sns a:hover{ color:#fff; border-color:var(--gold); background:rgba(195,165,114,.16); }
 .hero-sns svg{ width:18px; height:18px; }
-.hero-links{ display:flex; flex-wrap:wrap; justify-content:center; gap:1rem; width:100%; }
-.hero-link{
-  display:flex; flex-direction:column; flex:1 1 300px; max-width:380px; overflow:hidden;
-  border:1px solid var(--line-d); border-radius:3px; background:rgba(255,255,255,.04);
-  transition:transform .4s var(--ease), background .4s var(--ease), border-color .4s var(--ease);
-}
-.hero-link-media{ aspect-ratio:16/9; width:100%; border:0; border-radius:0; }
-.hero-link-text{
-  display:flex; flex-direction:column; gap:.4em; text-align:left; padding:.9em 1.15em 1.05em;
-  font-family:var(--mincho); font-weight:500; font-size:.96rem; letter-spacing:.03em;
-  color:rgba(255,255,255,.94); line-height:1.55; border-top:1px solid var(--line-d);
-}
-.hero-actions .lbl{ font-family:var(--util); letter-spacing:.18em; text-transform:uppercase; font-size:.58rem; color:var(--gold); }
-.hero-link:hover{ transform:translateY(-3px); background:rgba(195,165,114,.1); border-color:var(--gold); }
-.hero-btn{
-  display:inline-flex; flex-direction:column; align-items:center; gap:.3em;
-  border:1px solid var(--line-d); border-bottom:2px solid var(--gold);
-  background:rgba(255,255,255,.04); padding:.85em 2.2em; border-radius:2px;
-  font-family:var(--mincho); font-weight:500; font-size:.95rem; letter-spacing:.05em; color:rgba(255,255,255,.94);
-  transition:transform .4s var(--ease), background .4s var(--ease), border-color .4s var(--ease);
-}
-.hero-btn:hover{ transform:translateY(-2px); background:rgba(195,165,114,.12); border-color:var(--gold); }
+/* Instagram-profile-style 6-tile grid */
+.hero-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:7px; width:100%; margin-top:1.9rem; }
+.ig-tile{ position:relative; aspect-ratio:1; overflow:hidden; border-radius:2px; display:block; background:var(--navy-rise); }
+.ig-tile .media{ position:absolute; inset:0; border:0; border-radius:0; transition:transform .6s var(--ease); }
+.ig-tile:hover .media{ transform:scale(1.05); }
+.ig-tile-cap{ position:absolute; inset:auto 0 0 0; z-index:3; padding:.7em .75em .65em; text-align:left;
+  background:linear-gradient(transparent, rgba(8,15,28,.5) 38%, rgba(8,15,28,.93)); }
+.ig-tile-tag{ display:block; font-family:var(--util); letter-spacing:.12em; text-transform:uppercase; font-size:.48rem; color:var(--gold-soft); margin-bottom:.3em; }
+.ig-tile-name{ display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  font-family:var(--mincho); font-weight:500; font-size:clamp(.6rem,1.5vw,.82rem); letter-spacing:.01em; color:#fff; line-height:1.38; }
+.hero-cta-row{ display:flex; flex-wrap:wrap; gap:.9rem; justify-content:center; margin-top:2rem; }
+.hero-cta{ font-family:var(--mincho); font-weight:500; letter-spacing:.1em; font-size:.95rem;
+  padding:.9em 2.4em; border-radius:2px; border:1px solid var(--gold); transition:all .4s var(--ease); }
+.hero-cta--solid{ background:var(--gold); color:var(--navy); }
+.hero-cta--solid:hover{ background:transparent; color:var(--gold); }
+.hero-cta--ghost{ color:var(--gold); }
+.hero-cta--ghost:hover{ background:var(--gold); color:var(--navy); }
 
 .scroll-ind{
   position:absolute; left:50%; bottom:34px; transform:translateX(-50%); z-index:3;
@@ -622,7 +617,7 @@ body::before{
 
   /* hero */
   .hero .eyebrow{ font-size:.58rem; letter-spacing:.32em; margin-bottom:1.7rem; }
-  .hero-name{ gap:.6rem; }
+  .hero-name{ gap:.04em .16em; }
   .hero-name .nm{ letter-spacing:.04em; }
   .hero-name .loc{ letter-spacing:.04em; }
   .hero .tagline{ font-size:1.12rem; letter-spacing:.15em; }
@@ -675,10 +670,9 @@ body::before{
     <span class="ja">五十嵐歯科クリニック</span>
   </a>
   <nav class="nav" id="nav">
-    <a href="#about">About<span class="ja">当院について</span></a>
-    <a href="#concept">Concept<span class="ja">こだわり</span></a>
-    <a href="#treatment">Treatment<span class="ja">治療方法</span></a>
-    <a href="#access">Access<span class="ja">交通手段</span></a>
+    <a href="#works">Works<span class="ja">症例・治療</span></a>
+    <a href="#doctor">Doctor<span class="ja">院長</span></a>
+    <a href="#access">Access<span class="ja">アクセス</span></a>
     <a href="#contact" class="cta">Contact</a>
   </nav>
   <button class="burger" id="burger" aria-label="メニュー" aria-controls="nav" aria-expanded="false">
@@ -708,49 +702,56 @@ body::before{
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.9 2h2.7c.2 1.4.9 2.7 2 3.5.7.5 1.6.9 2.5 1v2.7c-1.6 0-3.1-.5-4.4-1.4v6.1c0 3.1-2.5 5.6-5.6 5.6S4.5 17 4.5 13.9s2.5-5.6 5.6-5.6c.3 0 .6 0 .9.1v2.8c-.3-.1-.6-.2-.9-.2-1.6 0-2.8 1.3-2.8 2.9s1.3 2.9 2.8 2.9c1.6 0 2.9-1.2 2.9-2.8V2z"/></svg>
         </a>
       </div>
-      <div class="hero-links">
-        <!-- TODO: 実URLに差し替え（インプラント不使用 症例ページ） -->
-        <a class="hero-link" href="#">
-          <div class="hero-link-media media">
-            <span class="corner tl"></span><span class="corner br"></span>
-            <div class="ph-label">Before / After</div>
-            <!-- 画像差し替え（横長1枚・ビフォーアフター）: <img src="assets/img/case-implant.jpg" alt="インプラントを使わないで歯を作る症例 ビフォーアフター"> -->
-          </div>
-          <span class="hero-link-text"><span class="lbl">Before / After 症例</span>インプラントを使わないで歯を作る</span>
+
+      <!-- Instagram-profile-style grid: 3 症例 + 3 治療（各タイルに画像とリンクを差し替え） -->
+      <div class="hero-grid" id="works">
+        <!-- TODO: 症例ページURL → 顔出し画像 case-implant.jpg -->
+        <a class="ig-tile" href="#">
+          <div class="media"><span class="corner tl"></span><span class="corner br"></span>
+            <!-- 画像差し替え: <img src="assets/img/case-implant.jpg" alt="インプラントを使わないで歯を作る ビフォーアフター"> --></div>
+          <div class="ig-tile-cap"><span class="ig-tile-tag">Before / After</span><span class="ig-tile-name">インプラントを使わないで歯を作る</span></div>
         </a>
-        <!-- TODO: 実URLに差し替え（矯正では治らない歯 症例ページ） -->
-        <a class="hero-link" href="#">
-          <div class="hero-link-media media">
-            <span class="corner tl"></span><span class="corner br"></span>
-            <div class="ph-label">Before / After</div>
-            <!-- 画像差し替え（横長1枚・ビフォーアフター）: <img src="assets/img/case-ortho.jpg" alt="矯正では治らない歯をセラミックで作る症例 ビフォーアフター"> -->
-          </div>
-          <span class="hero-link-text"><span class="lbl">Before / After 症例</span>矯正では治らない歯をセラミックで作る</span>
+        <!-- TODO: 症例ページURL → 画像 case-ortho.jpg -->
+        <a class="ig-tile" href="#">
+          <div class="media"><span class="corner tl"></span><span class="corner br"></span>
+            <!-- 画像差し替え: <img src="assets/img/case-ortho.jpg" alt="矯正では治らない歯をセラミックで作る ビフォーアフター"> --></div>
+          <div class="ig-tile-cap"><span class="ig-tile-tag">Before / After</span><span class="ig-tile-name">矯正では治らない歯をセラミックで作る</span></div>
+        </a>
+        <!-- TODO: 症例ページURL → 画像 case-face.jpg -->
+        <a class="ig-tile" href="#">
+          <div class="media"><span class="corner tl"></span><span class="corner br"></span>
+            <!-- 画像差し替え: <img src="assets/img/case-face.jpg" alt="顔出しビフォーアフター症例"> --></div>
+          <div class="ig-tile-cap"><span class="ig-tile-tag">Before / After</span><span class="ig-tile-name">顔出しビフォーアフター</span></div>
+        </a>
+        <!-- TODO: 治療ページURL → 画像 treatment-1.jpg -->
+        <a class="ig-tile" href="#">
+          <div class="media"><span class="corner tl"></span><span class="corner br"></span>
+            <!-- 画像差し替え: <img src="assets/img/treatment-1.jpg" alt="ジルコニア ラミネートべニア"> --></div>
+          <div class="ig-tile-cap"><span class="ig-tile-tag">Treatment</span><span class="ig-tile-name">ジルコニア ラミネートべニア</span></div>
+        </a>
+        <!-- TODO: 治療ページURL → 画像 treatment-2.jpg -->
+        <a class="ig-tile" href="#">
+          <div class="media"><span class="corner tl"></span><span class="corner br"></span>
+            <!-- 画像差し替え: <img src="assets/img/treatment-2.jpg" alt="ジルコニア オールセラミック クラウン"> --></div>
+          <div class="ig-tile-cap"><span class="ig-tile-tag">Treatment</span><span class="ig-tile-name">オールセラミック クラウン</span></div>
+        </a>
+        <!-- TODO: 治療ページURL → 画像 treatment-3.jpg -->
+        <a class="ig-tile" href="#">
+          <div class="media"><span class="corner tl"></span><span class="corner br"></span>
+            <!-- 画像差し替え: <img src="assets/img/treatment-3.jpg" alt="セラミックインレー"> --></div>
+          <div class="ig-tile-cap"><span class="ig-tile-tag">Treatment</span><span class="ig-tile-name">セラミックインレー</span></div>
         </a>
       </div>
-      <!-- TODO: 実URLに差し替え（インタビュー記事ページ） -->
-      <a class="hero-btn" href="#"><span class="lbl">Interview</span>インタビュー記事</a>
+
+      <div class="hero-cta-row">
+        <a class="hero-cta hero-cta--solid" href="#contact">問い合わせ</a>
+        <!-- TODO: インタビュー記事URL -->
+        <a class="hero-cta hero-cta--ghost" href="#">インタビュー記事</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============================ ABOUT ============================ -->
-<section class="section section--ivory" id="about">
-  <div class="wrap about-grid">
-    <div class="about-copy">
-      <p class="eyebrow reveal">About</p>
-      <h2 class="display reveal d1">完璧な美しさを<br>追求する歯科。</h2>
-      <p class="h-title reveal d1" style="color:var(--gold)">当院について</p>
-      <p class="lead reveal d2">「五十嵐歯科クリニック 代官山」では、ドクターの歯科医療技術を高いレベルに保ち、その上で完璧な美しさを追求しています。常により強く、より美しい素材を求めて、最新の歯科材料を取り入れています。</p>
-      <p class="lead reveal d2">どのような状態からでも、可能なかぎり理想の口元をつくることができます。</p>
-    </div>
-    <div class="about-media media is-ivory reveal d2">
-      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-      <div class="ph-label">Image<span>当院イメージ</span></div>
-      <!-- 画像差し替え： <img src="about.jpg" alt="五十嵐歯科クリニックの内装"> -->
-    </div>
-  </div>
-</section>
 
 <!-- ============================ DOCTOR ============================ -->
 <section class="section section--deep" id="doctor">
@@ -771,154 +772,9 @@ body::before{
   </div>
 </section>
 
-<!-- ============================ CONCEPT ============================ -->
-<section class="section section--navy" id="concept">
-  <div class="wrap">
-    <div class="concept-head">
-      <div class="tategaki reveal">より美しい歯を、<em>つくりたい。</em></div>
-      <div class="concept-intro">
-        <p class="eyebrow reveal">Concept</p>
-        <h2 class="display reveal d1">美の原因を、<br>追求する。</h2>
-        <p class="lead reveal d2">最も重要なのは、施術をうける患者様の顔と全体のバランスに最も合った、完璧に美しい歯をイメージできるということ。その上で、つくりだしたイメージを正確に具現化するための高度な歯科医療技術が、絶対的に必要不可欠なのです。</p>
-      </div>
-    </div>
 
-    <div class="concept-list">
-      <div class="c-item reveal">
-        <span class="idx">01</span>
-        <div>
-          <span class="c-en">Technique &amp; Results</span>
-          <h3 class="c-ja">審美・美容歯科技術</h3>
-          <p class="c-desc">金属を使用しないオールセラミックスやセラミックインレーには、光の透過性によって自然な美しさを得るための特殊な施術が必要です。「より美しい歯をつくりたい」を目標に、日本人の歯に対応する独自の技術を開発してきました。</p>
-        </div>
-        <span class="c-tag">技術と実績</span>
-      </div>
-      <div class="c-item reveal">
-        <span class="idx">02</span>
-        <div>
-          <span class="c-en">Safety First</span>
-          <h3 class="c-ja">安心して治療を受けるために</h3>
-          <p class="c-desc">被曝量の少ない最新鋭のデジタルエックス線を採用し、各チェアーでモニター確認が可能です。2台のオートクレーブで滅菌した器具は、患者様の目の前でパックを開封。すべてディスポーザブルで安心の施術環境を整えています。</p>
-        </div>
-        <span class="c-tag">安全性の追求</span>
-      </div>
-      <div class="c-item reveal">
-        <span class="idx">03</span>
-        <div>
-          <span class="c-en">Aesthetic Dentistry</span>
-          <h3 class="c-ja">審美・美容歯科とは</h3>
-          <p class="c-desc">口腔外科、歯内治療、歯周組織治療、レントゲン読影 ― あらゆる歯科医療の基本技術をマスターした上に成り立つのが「審美・美容の歯科」。最高の素材で顔全体のバランスを取り込み、理想の口元をつくります。</p>
-        </div>
-        <span class="c-tag">五十嵐一誠の想い</span>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ============================ TREATMENT ============================ -->
-<section class="section section--ivory" id="treatment">
-  <div class="wrap">
-    <div class="treat-head">
-      <p class="eyebrow eyebrow--center reveal">Treatment</p>
-      <h2 class="display reveal d1">治療方法</h2>
-      <p class="lead reveal d2" style="max-width:64ch;margin-inline:auto;">厳選したテクニシャンに上物の種類別に制作を依頼し、少しも妥協することのない、完璧に美しい歯と口元をつくることをお約束します。</p>
-    </div>
 
-    <div class="treat-grid">
-      <article class="t-card reveal">
-        <span class="t-num">01</span>
-        <div class="t-media media is-ivory">
-          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-          <div class="ph-label">Image</div>
-          <!-- 画像： <img src="treatment-1.jpg" alt="ジルコニア ラミネートべニア"> -->
-        </div>
-        <span class="t-en">Zirconia Laminate Veneer</span>
-        <h3 class="t-name">ジルコニア<br>ラミネートべニア</h3>
-        <p class="t-desc">歯の表面を薄く削り、1mm前後のセラミックチップを貼り付ける方法。削る量が少なく神経を残せるため、リスクの少ない施術で、ほとんどどんな歯並びも美しく整えます。</p>
-        <div class="t-foot">
-          <div class="t-price"><span class="yen">¥130,000</span><span class="unit">/ 1本</span><span class="tax">（税別）</span></div>
-          <span class="t-warranty">保証 2年</span>
-        </div>
-      </article>
-
-      <article class="t-card reveal d1">
-        <span class="t-num">02</span>
-        <div class="t-media media is-ivory">
-          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-          <div class="ph-label">Image</div>
-          <!-- 画像： <img src="treatment-2.jpg" alt="ジルコニア オールセラミック クラウン"> -->
-        </div>
-        <span class="t-en">Zirconia All-Ceramic Crown</span>
-        <h3 class="t-name">ジルコニア<br><span class="nb">オールセラミック クラウン</span></h3>
-        <p class="t-desc">金属を全く使わず、より多くの光を透過させ自然な美しい歯を実現。色調・透明感・歯肉との親和性に優れ、金属アレルギーの方も安心。奥歯やブリッジにも対応します。</p>
-        <div class="t-foot">
-          <div class="t-price"><span class="yen">¥130,000</span><span class="unit">/ 1本</span><span class="tax">（税別）</span></div>
-          <span class="t-warranty">保証 2年</span>
-        </div>
-      </article>
-
-      <article class="t-card reveal d2">
-        <span class="t-num">03</span>
-        <div class="t-media media is-ivory">
-          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-          <div class="ph-label">Image</div>
-          <!-- 画像： <img src="treatment-3.jpg" alt="セラミックインレー"> -->
-        </div>
-        <span class="t-en">Ceramic Inlay</span>
-        <h3 class="t-name">セラミック<br>インレー</h3>
-        <p class="t-desc">セラミックスを使用して、部分的な虫歯や銀歯を白く治す方法。透明感があり自然で美しく、強度にも優れています。さりげなく口元の印象を整えたい方へ。</p>
-        <div class="t-foot">
-          <div class="t-price"><span class="yen">¥39,000</span><span class="unit">/ 1本</span><span class="tax">（税別）</span></div>
-          <span class="t-warranty">保証 1年</span>
-        </div>
-      </article>
-    </div>
-    <p class="treat-note reveal">※ 別途治療費がかかる場合があります。保証は +1万円で1年の追加が可能です（一部治療）。</p>
-  </div>
-</section>
-
-<!-- ============================ GALLERY ============================ -->
-<section class="section section--deep" id="gallery">
-  <div class="wrap">
-    <div class="gallery-head">
-      <p class="eyebrow eyebrow--center reveal">Gallery</p>
-      <h2 class="display reveal d1">当院の設備・内装</h2>
-      <p class="lead reveal d2">最新鋭の機材と、安心してご提供できる素材・アイテムを採用。スタイリッシュでラグジュアリーな内装とアート装飾で、オシャレな空間にお迎えします。</p>
-    </div>
-    <!-- 各セルに画像/動画を差し替え。.media を <img>/<video> に置き換えればOK -->
-    <div class="gallery-grid reveal d1">
-      <div class="g-cell wide"><div class="media"><span class="corner tl"></span><span class="corner br"></span><div class="ph-label">Interior</div></div></div>
-      <div class="g-cell"><div class="media"><span class="corner tr"></span><div class="ph-label">Art</div></div></div>
-      <div class="g-cell tall"><div class="media"><span class="corner bl"></span><div class="ph-label">Space</div></div></div>
-      <div class="g-cell"><div class="media"><div class="ph-label">Detail</div></div></div>
-      <div class="g-cell"><div class="media"><div class="ph-label">Equipment</div></div></div>
-      <div class="g-cell wide"><div class="media"><span class="corner tl"></span><span class="corner br"></span><div class="ph-label">Lounge</div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================ INSTAGRAM ============================ -->
-<section class="section section--navy" id="instagram">
-  <div class="wrap ig-grid">
-    <div class="ig-copy">
-      <p class="eyebrow reveal">Instagram</p>
-      <h2 class="display reveal d1">インスタグラム</h2>
-      <p class="lead reveal d2">Dr. 五十嵐の人生観やファッション・ライフスタイル、施術例（ビフォーアフター）や患者さまの声をご覧いただけます。治療に関するご相談もDMからどうぞ。</p>
-      <a href="https://www.instagram.com/superdentist5/" target="_blank" rel="noopener" class="ig-handle reveal d2">@superdentist5</a>
-      <div class="ig-qr reveal d3">
-        <div class="qr-box" style="background:#fff;padding:9px;border-radius:3px;box-shadow:0 8px 24px rgba(0,0,0,.3)"><img src="assets/img/qr-instagram.svg" alt="@superdentist5 InstagramアカウントへのQRコード" style="width:100%;height:100%;object-fit:contain" loading="lazy"></div>
-        <small>QRコードから<br>アカウントへ</small>
-      </div>
-    </div>
-    <div class="ig-feed reveal d1">
-      <div class="media"><div class="ph-label" style="letter-spacing:.2em">Post</div></div>
-      <div class="media"><div class="ph-label" style="letter-spacing:.2em">Post</div></div>
-      <div class="media"><div class="ph-label" style="letter-spacing:.2em">Post</div></div>
-      <div class="media"><div class="ph-label" style="letter-spacing:.2em">Post</div></div>
-      <!-- 投稿画像 or Instagram埋め込みに差し替え -->
-    </div>
-  </div>
-</section>
 
 <!-- ============================ ACCESS ============================ -->
 <section class="section section--deep" id="access">
@@ -947,14 +803,6 @@ body::before{
   </div>
 </section>
 
-<!-- ============================ MESSAGE ============================ -->
-<section class="section section--ivory message">
-  <div class="wrap">
-    <p class="eyebrow eyebrow--center reveal">Message</p>
-    <h2 class="display reveal d1">理想の口元を、<br>あなたに。</h2>
-    <p class="lead reveal d2">最高の素材を使用し、顔全体のバランス、目の平行位置と鼻の方向と歯のライン、皮膚の色と歯の色彩 ― 美しくするためのあらゆる要素を取り込んだデザインで、実際の歯をつくっていきます。どのような状態からでも、可能なかぎり理想の口元をつくることができます。</p>
-  </div>
-</section>
 
 <!-- ============================ CONTACT ============================ -->
 <section class="section section--deep contact" id="contact">
