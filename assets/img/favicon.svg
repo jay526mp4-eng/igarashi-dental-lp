@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Igarashi Dental Clinic">
+  <rect width="512" height="512" fill="#0F1A30"/>
+  <!-- gold hairline frame, echoing the site's media-corner motif -->
+  <rect x="46" y="46" width="420" height="420" fill="none" stroke="#C3A572" stroke-width="9" opacity="0.85"/>
+  <!-- serif "I" monogram (vector, font-independent) -->
+  <g fill="#C3A572">
+    <rect x="232" y="170" width="48" height="172"/>
+    <rect x="198" y="164" width="116" height="20"/>
+    <rect x="198" y="328" width="116" height="20"/>
+  </g>
+</svg>
